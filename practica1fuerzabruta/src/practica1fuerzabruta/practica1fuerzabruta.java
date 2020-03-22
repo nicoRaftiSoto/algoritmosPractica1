@@ -6,39 +6,46 @@ public class practica1fuerzabruta {
 	public practica1fuerzabruta() {
 	}
 	
-	/**public List<String> permutacion (String aux){
+	public List<String> permutacion (String aux){
 		List <String> listos = new ArrayList<String>();
+		List <String> auxi = new ArrayList<String>();
+		List <String> auxi2 = new ArrayList<String>();
 		if (aux.length()==0) {
+			listos.add("");
 			return listos;
 		}
-		if (aux.length()==1) {
-			listos.add(aux);
-			return listos;
+		listos = permutacion (aux.substring(1));
+		for (int i=0; i<listos.size(); i++) {
+			String pasando = listos.get(i);
+			auxi = intercalar (pasando, aux.charAt(0));
+			for (int j=0; j<auxi.size(); j++) {
+				auxi2.add(auxi.get(j));
+			}
 		}
-		List <String> agregar = new ArrayList<String>();
-		for (int i=0; i<aux.length(); i++) {	
+		listos = auxi2;
+		return listos;
+	}
+	
+	public List<String> intercalar (String intercambio, char pasa) {
+		List <String> aux = new ArrayList<String>();
+		if (intercambio.length() == 0) {
+			aux.add(Character.toString(pasa));
+			return aux;
+		}
+		for (int i=0; i<=intercambio.length(); i++) {
 			if (i==0) {
-				agregar = unir(aux.charAt(0), permutacion(aux.substring(1)));
+				aux.add(Character.toString(pasa).concat(intercambio));
 			}
-			if (i!=0 && i!=aux.length()-1) {
-				String prob1 = aux.substring(0, i);
-				String prob2 = aux.substring(i+1, aux.length());
-				String pas = prob1.concat(prob2);
-				List <String> auxi = new ArrayList<String>();
-				List <String> auxi2 = permutacion(pas);
-				auxi = unir(aux.charAt(i), permutacion(pas));
-				for (int j=0; j<auxi2.size(); j++) {
-					System.out.println("elementos " + auxi2.get(0));
-				}
-			}else {
-				List <String> auxi = new ArrayList<String>();
-				auxi = unir(aux.charAt(i), permutacion(aux.substring(0, i)));
-				for (int j=0; j<auxi.size(); j++) {
-					agregar.add(auxi.get(0));
-				}
+			if (i>0 && i<intercambio.length()) {
+				String aux1 = intercambio.substring(0, i);
+				String aux2 = intercambio.substring(i, intercambio.length());
+				aux.add(aux1.concat(Character.toString(pasa).concat(aux2)));
+			}
+			if (i==intercambio.length()) {
+				aux.add(intercambio.concat(Character.toString(pasa)));
 			}
 		}
-		return agregar;
+		return aux;
 	}
 	
 	private List <String> unir (char primero, List <String> permutado) {
@@ -48,7 +55,7 @@ public class practica1fuerzabruta {
 			aux.add(cadena.concat(permutado.get(i)));
 		}
 		return aux;
-	}*/
+	}
 	
 	public List<String> sublistas (String lista){
 		List <String> aux = new ArrayList<String>();
@@ -59,5 +66,21 @@ public class practica1fuerzabruta {
 		}
 		aux.add("");
 		return aux;
+	}
+	
+	public List<String> subconjuntos (String lista){
+		List <String> subcon = new ArrayList<String>();
+		if (lista.length() == 0) {
+			subcon.add(" ");
+			return subcon;
+		}
+		List <String> aux1 = new ArrayList<String>();
+		List <String> aux2 = new ArrayList<String>();
+		aux1 = subconjuntos (lista.substring(1));
+		aux2 = unir (lista.charAt(0), aux1);
+		for (int i=0; i<aux1.size(); i++) {
+			aux2.add(aux1.get(i));
+		}
+		return aux2;
 	}
 }
