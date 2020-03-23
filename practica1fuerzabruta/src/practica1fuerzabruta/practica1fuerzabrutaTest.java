@@ -2,12 +2,11 @@ package practica1fuerzabruta;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 class practica1fuerzabrutaTest {
 
-	@Test
-	void testProb() {
+	/**void testProb() {
 		practica1fuerzabruta asd = new practica1fuerzabruta();
 		List<String> permutado = new ArrayList<String>();
 		//permutado = asd.permutacion("fa");
@@ -25,7 +24,7 @@ class practica1fuerzabrutaTest {
 		for (int i=0; i<permutado.size(); i++) {
 			System.out.println(permutado.get(i));
 		}
-	}
+	}*/
 	
 	/**void testSublistas() {
 		practica1fuerzabruta asd = new practica1fuerzabruta();

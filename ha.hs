@@ -88,3 +88,9 @@ eliminarrepetidos (x:xs) = x:(eliminarrepetidos (eliminar x xs))
 eliminar :: Int -> [Int] -> [Int]
 eliminar x [] = []
 eliminar x (y:ys) = if (x==y) then (eliminar x ys) else y:(eliminar x ys)
+
+subsecuencia :: [Int] -> [Int] -> Bool
+subsecuencia (x:xs) [] = False
+subsecuencia [] (x:xs) = True
+subsecuencia [] [] = True
+subsecuencia (x:xs) (y:ys) = if (x==y) then subsecuencia xs ys else subsecuencia (x:xs) ys

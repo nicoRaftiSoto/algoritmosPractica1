@@ -6,7 +6,7 @@ public class practica1fuerzabruta {
 	public practica1fuerzabruta() {
 	}
 	
-	public List<String> permutacion (String aux){
+	private List<String> permutacion (String aux){
 		List <String> listos = new ArrayList<String>();
 		List <String> auxi = new ArrayList<String>();
 		List <String> auxi2 = new ArrayList<String>();
@@ -26,7 +26,7 @@ public class practica1fuerzabruta {
 		return listos;
 	}
 	
-	public List<String> intercalar (String intercambio, char pasa) {
+	private List<String> intercalar (String intercambio, char pasa) {
 		List <String> aux = new ArrayList<String>();
 		if (intercambio.length() == 0) {
 			aux.add(Character.toString(pasa));
@@ -57,7 +57,7 @@ public class practica1fuerzabruta {
 		return aux;
 	}
 	
-	public List<String> sublistas (String lista){
+	private List<String> sublistas (String lista){
 		List <String> aux = new ArrayList<String>();
 		for (int i=0; i<=lista.length(); i++) {
 			for (int j=i+1; j<=lista.length(); j++) {
@@ -82,5 +82,25 @@ public class practica1fuerzabruta {
 			aux2.add(aux1.get(i));
 		}
 		return aux2;
+	}
+	
+	public boolean anagrama (String lista1, String lista2) {
+		List <String> permutaciones = permutacion (lista1);
+		for (int i=0; i<permutaciones.size(); i++) {
+			if (permutaciones.get(i).compareTo(lista2) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean perteneceSubLista (String lista1, String lista2) {
+		List <String> subListas = sublistas(lista2);
+		for (int i=0; i<subListas.size(); i++) {
+			if (subListas.get(i).compareTo(lista1) == 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
